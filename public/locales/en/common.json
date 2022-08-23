@@ -1,3 +1,6 @@
 {
-    "greeting":  "english hello 123"
+    "greeting":  "english hello 123",
+    "main": {
+        "greeting": "hello"
+    }
 }
