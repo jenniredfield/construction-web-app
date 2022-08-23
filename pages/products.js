@@ -1,16 +1,16 @@
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useTranslation } from "next-i18next";
-import { collection, getDocs } from "firebase/firestore";
-import { db } from "../firebase.config";
+// import { collection, getDocs } from "firebase/firestore";
+// import { db } from "../firebase.config";
 
 export async function getServerSideProps({ locale, query }) {
-  const querySnapshot = await getDocs(collection(db, "products"));
+  // const querySnapshot = await getDocs(collection(db, "products"));
 
   const products = [];
 
-  querySnapshot.forEach((doc) => {
-    products.push(doc.data());
-  });
+  // querySnapshot.forEach((doc) => {
+  //   products.push(doc.data());
+  // });
 
   //call own API
   return {
