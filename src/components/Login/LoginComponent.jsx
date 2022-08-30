@@ -1,5 +1,5 @@
 import { Box, Button, TextField } from "@mui/material";
-import CenteredLayout from "../CenteredLayout/CenteredLayout";
+import CenteredLayout from "../Layout/CenteredLayout/CenteredLayout";
 
 const LoginComponent = ({ children }) => {
   return (

@@ -1,16 +1,21 @@
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useTranslation } from "next-i18next";
-// import { collection, getDocs } from "firebase/firestore";
-// import { db } from "../firebase.config";
+
+import { Box } from "@mui/material";
+import ProductsGrid from "../src/components/Products/ProductsGrid/ProductsGrid";
+
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "../firebase.config";
+import PageWrapper from "../src/components/Layout/Wrappers/PageWrapper";
 
 export async function getServerSideProps({ locale, query }) {
-  // const querySnapshot = await getDocs(collection(db, "products"));
+  const querySnapshot = await getDocs(collection(db, "products"));
 
   const products = [];
 
-  // querySnapshot.forEach((doc) => {
-  //   products.push(doc.data());
-  // });
+  querySnapshot.forEach((doc) => {
+    products.push({ id: doc.id, ...doc.data() });
+  });
 
   //call own API
   return {
@@ -22,8 +27,7 @@ export async function getServerSideProps({ locale, query }) {
   };
 }
 
-function Products(props) {
-  console.log("🚀 ~ file: products.js ~ line 35 ~ Products ~ props", props);
+function Products({ products }) {
   const { t } = useTranslation(["common", "main"]);
 
   const fetchHello = async () => {
@@ -37,11 +41,11 @@ function Products(props) {
   };
 
   return (
-    <div>
-      <p>{t("greeting")}</p>
-      <button onClick={fetchHello}>Hello</button>
-      <button onClick={fetchProducts}>Fetch Products</button>
-    </div>
+    <PageWrapper>
+      <Box maxWidth="800px" margin="0 auto">
+        <ProductsGrid products={products} />
+      </Box>
+    </PageWrapper>
   );
 }
 
