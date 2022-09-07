@@ -1,12 +1,14 @@
 import Link from "next/link";
-import { Box, Button } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
 import { NavBarContainer, NavBarWrapper } from "./NavBar.styles";
 
 const NavBar = () => {
   return (
     <NavBarContainer>
       <NavBarWrapper>
-        <Box></Box>
+        <Box>
+          <Typography variant="h1"></Typography>
+        </Box>
         <Box display="flex" alignItems="center">
           <Box mr={2}>
             <Link href="/login">
