@@ -13,11 +13,13 @@
     "@emotion/server": "^11.10.0",
     "@emotion/styled": "^11.10.0",
     "@mui/material": "^5.10.0",
+    "axios": "^1.1.2",
     "firebase": "^9.9.3",
     "next": "12.2.5",
     "next-i18next": "^11.3.0",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "react-hook-form": "^7.37.0"
   },
   "devDependencies": {
     "eslint": "8.22.0",
