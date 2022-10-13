@@ -14,12 +14,14 @@
     "@emotion/styled": "^11.10.0",
     "@mui/material": "^5.10.0",
     "axios": "^1.1.2",
+    "email-validator": "^2.0.4",
     "firebase": "^9.9.3",
     "next": "12.2.5",
     "next-i18next": "^11.3.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-hook-form": "^7.37.0"
+    "react-hook-form": "^7.37.0",
+    "yup": "^0.32.11"
   },
   "devDependencies": {
     "eslint": "8.22.0",

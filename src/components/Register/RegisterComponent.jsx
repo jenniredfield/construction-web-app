@@ -1,48 +1,69 @@
 import { useState } from "react";
+import { FormProvider, useForm } from "react-hook-form";
+import { object } from "yup";
+
 import { Box, Button, TextField } from "@mui/material";
 import CenteredLayout from "../Layout/CenteredLayout/CenteredLayout";
+import ControlledTextField from "../Inputs/Controlled/ControlledTextField/ControlledTextField";
+
+import { useYupValidationResolver } from "../../hooks/useYupValidationResolver";
+import { validation } from "../../utils/validation";
+
 import { register } from "../../api";
 
-const RegisterComponent = ({ children }) => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+const validationSchema = object({
+  ...validation.register,
+});
 
-  const onHandleRegister = async () => {
-    const res = await register({ email, password });
+const RegisterComponent = ({ children }) => {
+  const resolver = useYupValidationResolver(validationSchema);
+  const methods = useForm({
+    defaultValues: {
+      name: "",
+      last_name: "",
+      email: "",
+      password: "",
+      confirm_password: "",
+    },
+    resolver,
+  });
+
+  const onHandleRegister = async ({ email, password, name, last_name }) => {
+    const res = await register({ email, password, name, last_name });
+    console.log(
+      "🚀 ~ file: RegisterComponent.jsx ~ line 33 ~ onHandleRegister ~ res",
+      res
+    );
   };
 
   return (
     <CenteredLayout>
       <Box display="flex" flexDirection="column" width="400px">
-        <Box mb={2} width="100%">
-          <TextField
-            name="email"
-            value={email}
-            label="Email"
-            onChange={(e) => setEmail(e.target.value)}
-            fullWidth
-          />
-        </Box>
-        <Box mb={2} width="100%">
-          <TextField
-            name="password"
-            value={password}
-            label="Password"
-            fullWidth
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </Box>
-        <Box mb={2} width="100%">
-          <TextField
-            name="confimPassword"
-            value=""
-            label="Confirm Password"
-            fullWidth
-          />
-        </Box>
-        <Button variant="contained" onClick={onHandleRegister}>
-          Register
-        </Button>
+        <FormProvider {...methods}>
+          <form onSubmit={methods.handleSubmit(onHandleRegister)}>
+            <Box mb={2} width="100%">
+              <ControlledTextField name="name" label="Name" />
+            </Box>
+            <Box mb={2} width="100%">
+              <ControlledTextField name="last_name" label="Last Name" />
+            </Box>
+            <Box mb={2} width="100%">
+              <ControlledTextField name="email" label="Email" />
+            </Box>
+            <Box mb={2} width="100%">
+              <ControlledTextField name="password" label="Password" />
+            </Box>
+            <Box mb={2} width="100%">
+              <ControlledTextField
+                name="confirm_password"
+                label="Confirm Password"
+              />
+            </Box>
+            <Button variant="contained" type="submit">
+              Register
+            </Button>
+          </form>
+        </FormProvider>
       </Box>
     </CenteredLayout>
   );
