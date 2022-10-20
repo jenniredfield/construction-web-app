@@ -3,11 +3,14 @@ import { object } from "yup";
 
 import { Box, Button, TextField } from "@mui/material";
 import CenteredLayout from "../Layout/CenteredLayout/CenteredLayout";
+import ControlledTextField from "../Inputs/Controlled/ControlledTextField/ControlledTextField";
 
 import { validation } from "../../utils/validation";
 
 import { useYupValidationResolver } from "../../hooks/useYupValidationResolver";
-import ControlledTextField from "../Inputs/Controlled/ControlledTextField/ControlledTextField";
+
+import { login } from "../../api";
+import { useAuth } from "../../context/AuthProvider";
 
 const validationSchema = object({
   ...validation.login,
@@ -23,8 +26,10 @@ const LoginComponent = ({ children }) => {
     resolver,
   });
 
-  const onHandleLogin = (d) => {
-    console.log("d", d);
+  const { onLogin } = useAuth();
+
+  const onHandleLogin = async (data) => {
+    await onLogin(data);
   };
 
   return (

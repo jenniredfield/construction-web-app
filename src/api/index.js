@@ -23,3 +23,7 @@ const callService = async (url, method, data) => {
 };
 
 export const register = (data) => callService("/register", "POST", data);
+
+export const login = (data) => callService("/login", "POST", data);
+
+export const logout = () => callService("/logout", "POST");
