@@ -1,14 +1,14 @@
-import { app } from "../../firebase.config";
 import { useRouter } from "next/router";
 import { createContext, useContext, useEffect, useState } from "react";
 import { doc, setDoc, getDoc } from "firebase/firestore";
-import { db, auth } from "../../firebase.config";
 import {
   onAuthStateChanged,
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
   signOut,
 } from "firebase/auth";
+
+import { db, auth } from "../../firebase.config";
 
 const AuthContext = createContext(null);
 
