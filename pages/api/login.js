@@ -7,11 +7,6 @@ export default async function handler(req, res) {
   if (req.method === "POST") {
     try {
       const { email, password } = req.body;
-      console.log(
-        "🚀 ~ file: login.js ~ line 6 ~ handler ~ email, password",
-        email,
-        password
-      );
 
       const userCredential = await signInWithEmailAndPassword(
         auth,

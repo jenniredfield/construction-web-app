@@ -8,6 +8,7 @@ import ControlledTextField from "../Inputs/Controlled/ControlledTextField/Contro
 
 import { useYupValidationResolver } from "../../hooks/useYupValidationResolver";
 import { validation } from "../../utils/validation";
+import { useAuth } from "../../context/AuthProvider";
 
 import { register } from "../../api";
 
@@ -16,6 +17,7 @@ const validationSchema = object({
 });
 
 const RegisterComponent = ({ children }) => {
+  const { signUp } = useAuth();
   const resolver = useYupValidationResolver(validationSchema);
   const methods = useForm({
     defaultValues: {
@@ -29,11 +31,7 @@ const RegisterComponent = ({ children }) => {
   });
 
   const onHandleRegister = async ({ email, password, name, last_name }) => {
-    const res = await register({ email, password, name, last_name });
-    console.log(
-      "🚀 ~ file: RegisterComponent.jsx ~ line 33 ~ onHandleRegister ~ res",
-      res
-    );
+    await signUp({ email, password, name, last_name });
   };
 
   return (

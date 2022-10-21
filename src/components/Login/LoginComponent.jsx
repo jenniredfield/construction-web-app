@@ -9,7 +9,6 @@ import { validation } from "../../utils/validation";
 
 import { useYupValidationResolver } from "../../hooks/useYupValidationResolver";
 
-import { login } from "../../api";
 import { useAuth } from "../../context/AuthProvider";
 
 const validationSchema = object({
@@ -26,10 +25,10 @@ const LoginComponent = ({ children }) => {
     resolver,
   });
 
-  const { onLogin } = useAuth();
+  const { logIn } = useAuth();
 
   const onHandleLogin = async (data) => {
-    await onLogin(data);
+    await logIn(data);
   };
 
   return (

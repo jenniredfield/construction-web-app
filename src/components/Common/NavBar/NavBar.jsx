@@ -5,9 +5,9 @@ import Search from "../Search/Search";
 import { useAuth } from "../../../context/AuthProvider";
 
 const NavBar = () => {
-  const { profile, onLogout } = useAuth();
-  const hasProfile = Object.keys(profile || {}).length;
-  console.log("🚀 ~ file: NavBar.jsx ~ line 9 ~ NavBar ~ profile", profile);
+  const { user, logOut } = useAuth();
+  const hasUser = Object.keys(user || {}).length;
+  console.log("🚀 ~ file: NavBar.jsx ~ line 9 ~ NavBar ~ profile", user);
   return (
     <NavBarContainer>
       <NavBarWrapper>
@@ -21,9 +21,9 @@ const NavBar = () => {
               <Button variant="text">Login</Button>
             </Link>
           </Box>
-          {!!hasProfile && (
+          {!!hasUser && (
             <Box mr={2}>
-              <Button variant="text" onClick={onLogout}>
+              <Button variant="text" onClick={logOut}>
                 Logout
               </Button>
             </Box>
