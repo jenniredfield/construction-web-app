@@ -16,11 +16,27 @@ const NavBar = () => {
         </Box>
         <Box display="flex" alignItems="center">
           <Search />
-          <Box mr={2}>
-            <Link href="/login">
-              <Button variant="text">Login</Button>
-            </Link>
-          </Box>
+          {!hasUser && (
+            <Box mr={2}>
+              <Link href="/login">
+                <Button variant="text">Login</Button>
+              </Link>
+            </Box>
+          )}
+          {!!hasUser && (
+            <Box mr={2}>
+              <Link href="/account">
+                <Button variant="text">My Account</Button>
+              </Link>
+            </Box>
+          )}
+          {!!hasUser && (
+            <Box mr={2}>
+              <Link href="/basket">
+                <Button variant="text">Basket</Button>
+              </Link>
+            </Box>
+          )}
           {!!hasUser && (
             <Box mr={2}>
               <Button variant="text" onClick={logOut}>
@@ -28,9 +44,11 @@ const NavBar = () => {
               </Button>
             </Box>
           )}
-          <Link href="/register">
-            <Button variant="contained">Register</Button>
-          </Link>
+          {!hasUser && (
+            <Link href="/register">
+              <Button variant="contained">Register</Button>
+            </Link>
+          )}
         </Box>
       </NavBarWrapper>
     </NavBarContainer>

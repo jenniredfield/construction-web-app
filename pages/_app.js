@@ -9,6 +9,7 @@ import { CacheProvider } from "@emotion/react";
 import theme from "../src/theme/theme";
 import createEmotionCache from "../src/theme/createEmotionCache";
 import { AuthProvider } from "../src/context/AuthProvider";
+import NavBar from "../src/components/Common/NavBar/NavBar";
 
 // Client-side cache shared for the whole session
 // of the user in the browser.

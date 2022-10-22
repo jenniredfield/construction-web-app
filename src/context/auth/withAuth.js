@@ -12,11 +12,7 @@ const withAuth = (Component) => (props) => {
     });
   }, [router]);
 
-  return (
-    <div>
-      <Component {...props} />
-    </div>
-  );
+  return <Component {...props} />;
 };
 
 export default withAuth;

@@ -5,6 +5,8 @@ import { object } from "yup";
 import { Box, Button, TextField } from "@mui/material";
 import CenteredLayout from "../Layout/CenteredLayout/CenteredLayout";
 import ControlledTextField from "../Inputs/Controlled/ControlledTextField/ControlledTextField";
+import withUnAuth from "../../context/auth/withUnAuth";
+import Spinner from "../Common/Spinner/Spinner";
 
 import { useYupValidationResolver } from "../../hooks/useYupValidationResolver";
 import { validation } from "../../utils/validation";
@@ -16,7 +18,8 @@ const validationSchema = object({
   ...validation.register,
 });
 
-const RegisterComponent = ({ children }) => {
+const RegisterComponent = () => {
+  const [isLoading, setIsLoading] = useState(false);
   const { signUp } = useAuth();
   const resolver = useYupValidationResolver(validationSchema);
   const methods = useForm({
@@ -31,7 +34,9 @@ const RegisterComponent = ({ children }) => {
   });
 
   const onHandleRegister = async ({ email, password, name, last_name }) => {
+    setIsLoading(true);
     await signUp({ email, password, name, last_name });
+    setIsLoading(false);
   };
 
   return (
@@ -57,9 +62,13 @@ const RegisterComponent = ({ children }) => {
                 label="Confirm Password"
               />
             </Box>
-            <Button variant="contained" type="submit">
-              Register
-            </Button>
+            {isLoading ? (
+              <Spinner />
+            ) : (
+              <Button variant="contained" type="submit">
+                Register
+              </Button>
+            )}
           </form>
         </FormProvider>
       </Box>
@@ -67,4 +76,4 @@ const RegisterComponent = ({ children }) => {
   );
 };
 
-export default RegisterComponent;
+export default withUnAuth(RegisterComponent);
