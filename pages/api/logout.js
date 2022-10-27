@@ -2,7 +2,7 @@ import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 const auth = getAuth();
 
 export default async function handler(req, res) {
-  if (req.method === "POST") {
+  if (req.method === "POST" && process.env.NEXT_PUBLIC_SEED_KEY) {
     try {
       auth()
         .signOut()
