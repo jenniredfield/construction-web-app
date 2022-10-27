@@ -1,10 +1,10 @@
 import { collection, addDoc } from "firebase/firestore";
 import { db } from "../../../firebase.config";
-import { products } from "./data.js";
+import { products_tijolo, products_azulejo } from "./data.js";
 
 export const seedProductsDB = async () => {
   try {
-    products.forEach(async (product) => {
+    products_azulejo.forEach(async (product) => {
       const docRef = await addDoc(collection(db, "products"), {
         ...product,
       });

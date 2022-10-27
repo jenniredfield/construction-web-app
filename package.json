@@ -12,6 +12,7 @@
     "@emotion/react": "^11.10.0",
     "@emotion/server": "^11.10.0",
     "@emotion/styled": "^11.10.0",
+    "@mui/icons-material": "^5.10.9",
     "@mui/material": "^5.10.0",
     "axios": "^1.1.2",
     "email-validator": "^2.0.4",

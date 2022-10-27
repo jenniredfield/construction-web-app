@@ -1,7 +1,3 @@
-import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { useTranslation } from "next-i18next";
-
-import { Box } from "@mui/material";
 import ProductsGrid from "../src/components/Products/ProductsGrid/ProductsGrid";
 
 import {
@@ -37,7 +33,6 @@ export async function getServerSideProps({ locale, query }) {
   //call own API
   return {
     props: {
-      ...(await serverSideTranslations(locale, ["common", "main"])),
       // Will be passed to the page component as props
       products,
     },
@@ -45,13 +40,10 @@ export async function getServerSideProps({ locale, query }) {
 }
 
 function Products({ products }) {
-  const { t } = useTranslation(["common", "main"]);
-
+  console.log("loaded?");
   return (
     <PageWrapper>
-      <Box maxWidth="800px" margin="0 auto">
-        <ProductsGrid products={products} />
-      </Box>
+      <ProductsGrid products={products} />
     </PageWrapper>
   );
 }

@@ -1,10 +1,15 @@
 import Link from "next/link";
-import { Box, Button, Input, Typography } from "@mui/material";
-import { NavBarContainer, NavBarWrapper } from "./NavBar.styles";
+import { Box, Button, Input, Typography, useMediaQuery } from "@mui/material";
+import ManageAccountsIcon from "@mui/icons-material/ManageAccounts";
+import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
 import Search from "../Search/Search";
+
+import { NavBarContainer, NavBarWrapper, LinkStyled } from "./NavBar.styles";
+
 import { useAuth } from "../../../context/AuthProvider";
 
 const NavBar = () => {
+  const isMobile = useMediaQuery((theme) => theme.breakpoints.down("md"));
   const { user, logOut } = useAuth();
   const hasUser = Object.keys(user || {}).length;
   return (
@@ -12,46 +17,52 @@ const NavBar = () => {
       <NavBarWrapper>
         <Box p={2}>
           <Link href="/">
-            <Typography variant="h3" color="primary">
-              ConstruApp
-            </Typography>
+            {isMobile ? (
+              <Box></Box>
+            ) : (
+              <Typography variant="h3" color="primary">
+                ConstruApp
+              </Typography>
+            )}
           </Link>
         </Box>
         <Box display="flex" alignItems="center">
           <Search />
-          {!hasUser && (
-            <Box mr={2}>
-              <Link href="/login">
-                <Button variant="text">Login</Button>
+          <Box ml={2} display="flex" alignItems="center">
+            {!hasUser && (
+              <Box mr={2}>
+                <Link href="/login">
+                  <Button variant="text">Login</Button>
+                </Link>
+              </Box>
+            )}
+            {!!hasUser && (
+              <Box mr={2}>
+                <LinkStyled href="/account">
+                  <ManageAccountsIcon />
+                </LinkStyled>
+              </Box>
+            )}
+            {!!hasUser && (
+              <Box mr={2}>
+                <LinkStyled href="/basket">
+                  <ShoppingBasketIcon />
+                </LinkStyled>
+              </Box>
+            )}
+            {!!hasUser && (
+              <Box mr={2}>
+                <Button variant="text" onClick={logOut}>
+                  Logout
+                </Button>
+              </Box>
+            )}
+            {!hasUser && (
+              <Link href="/register">
+                <Button variant="contained">Register</Button>
               </Link>
-            </Box>
-          )}
-          {!!hasUser && (
-            <Box mr={2}>
-              <Link href="/account">
-                <Button variant="text">My Account</Button>
-              </Link>
-            </Box>
-          )}
-          {!!hasUser && (
-            <Box mr={2}>
-              <Link href="/basket">
-                <Button variant="text">Basket</Button>
-              </Link>
-            </Box>
-          )}
-          {!!hasUser && (
-            <Box mr={2}>
-              <Button variant="text" onClick={logOut}>
-                Logout
-              </Button>
-            </Box>
-          )}
-          {!hasUser && (
-            <Link href="/register">
-              <Button variant="contained">Register</Button>
-            </Link>
-          )}
+            )}
+          </Box>
         </Box>
       </NavBarWrapper>
     </NavBarContainer>

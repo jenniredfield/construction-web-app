@@ -1,4 +1,4 @@
-import { Box, styled } from "@mui/material";
+import { Box, styled, Link } from "@mui/material";
 
 export const NavBarContainer = styled(Box)(({ theme }) => ({
   width: "100%",
@@ -12,4 +12,8 @@ export const NavBarWrapper = styled(Box)(({ theme }) => ({
   display: "flex",
   justifyContent: "space-between",
   margin: "0 auto",
+}));
+
+export const LinkStyled = styled(Link)(({ theme }) => ({
+  cursor: "pointer",
 }));
