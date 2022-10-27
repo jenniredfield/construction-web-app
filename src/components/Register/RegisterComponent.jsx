@@ -12,8 +12,6 @@ import { useYupValidationResolver } from "../../hooks/useYupValidationResolver";
 import { validation } from "../../utils/validation";
 import { useAuth } from "../../context/AuthProvider";
 
-import { register } from "../../api";
-
 const validationSchema = object({
   ...validation.register,
 });

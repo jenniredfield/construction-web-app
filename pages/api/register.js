@@ -2,7 +2,7 @@
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore";
 import { db } from "../../firebase.config";
-// import { auth } from "../../firebase.config";
+
 const auth = getAuth();
 
 export default async function handler(req, res) {
