@@ -14,9 +14,8 @@ import { db } from "../firebase.config";
 import PageWrapper from "../src/components/Layout/Wrappers/PageWrapper";
 
 export async function getServerSideProps({ locale, query }) {
-  console.log("query", query);
   const { q } = query;
-  console.log("🚀 ~ file: products.js ~ line 19 ~ getServerSideProps ~ q", q);
+
   let querySnapshot = [];
   if (q) {
     const productsRef = collection(db, "products");
