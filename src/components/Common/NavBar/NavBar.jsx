@@ -7,12 +7,15 @@ import { useAuth } from "../../../context/AuthProvider";
 const NavBar = () => {
   const { user, logOut } = useAuth();
   const hasUser = Object.keys(user || {}).length;
-  console.log("🚀 ~ file: NavBar.jsx ~ line 9 ~ NavBar ~ profile", user);
   return (
     <NavBarContainer>
       <NavBarWrapper>
-        <Box>
-          <Typography variant="h1"></Typography>
+        <Box p={2}>
+          <Link href="/">
+            <Typography variant="h3" color="primary">
+              ConstruApp
+            </Typography>
+          </Link>
         </Box>
         <Box display="flex" alignItems="center">
           <Search />

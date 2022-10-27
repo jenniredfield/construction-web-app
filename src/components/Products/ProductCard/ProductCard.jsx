@@ -8,22 +8,35 @@ import {
   Typography,
 } from "@mui/material";
 
-const ProductCard = ({ imgSrc, name, description, price, shop }) => {
+const ProductCard = ({
+  imgSrc,
+  name,
+  description,
+  price,
+  shop,
+  dimensions,
+}) => {
+  const img = Array.isArray(imgSrc) ? imgSrc[0] : imgSrc;
+
   return (
     <Card>
-      <CardMedia
-        component="img"
-        height="140"
-        image={imgSrc}
-        alt="green iguana"
-      />
+      <CardMedia component="img" height="140" image={img} alt="green iguana" />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
           {name}
         </Typography>
-        <Typography variant="body2" color="text.secondary">
-          {description}
-        </Typography>
+        <Box my={1}>
+          <Typography variant="body2" color="text.secondary">
+            {description}
+          </Typography>
+        </Box>
+        {dimensions && (
+          <Box>
+            <Typography gutterBottom variant="body1">
+              {`${dimensions.w} x ${dimensions.h} x ${dimensions.d}`}
+            </Typography>
+          </Box>
+        )}
         <Box>
           <Typography gutterBottom variant="body1">
             {price}
