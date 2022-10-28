@@ -1,15 +1,16 @@
 import * as React from "react";
-import "../firebase.config";
-import { appWithTranslation } from "next-i18next";
+import { Router } from "next/router";
 import PropTypes from "prop-types";
 import Head from "next/head";
 import { ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import { CacheProvider } from "@emotion/react";
+
+import "../firebase.config";
 import theme from "../src/theme/theme";
 import createEmotionCache from "../src/theme/createEmotionCache";
 import { AuthProvider } from "../src/context/AuthProvider";
-import NavBar from "../src/components/Common/NavBar/NavBar";
+import Spinner from "../src/components/Common/Spinner/Spinner";
 
 // Client-side cache shared for the whole session
 // of the user in the browser.
@@ -18,6 +19,26 @@ const clientSideEmotionCache = createEmotionCache();
 
 function MyApp(props) {
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
+  const [loading, setLoading] = React.useState(false);
+
+  React.useEffect(() => {
+    const start = () => {
+      console.log("start");
+      setLoading(true);
+    };
+    const end = () => {
+      console.log("finished");
+      setLoading(false);
+    };
+    Router.events.on("routeChangeStart", start);
+    Router.events.on("routeChangeComplete", end);
+    Router.events.on("routeChangeError", end);
+    return () => {
+      Router.events.off("routeChangeStart", start);
+      Router.events.off("routeChangeComplete", end);
+      Router.events.off("routeChangeError", end);
+    };
+  }, []);
 
   return (
     <CacheProvider value={emotionCache}>
@@ -31,7 +52,7 @@ function MyApp(props) {
 				build upon. */}
 
           <CssBaseline />
-          <Component {...pageProps} />
+          <Component {...pageProps} loading={loading} />
         </ThemeProvider>
       </AuthProvider>
     </CacheProvider>
@@ -44,4 +65,4 @@ MyApp.propTypes = {
   pageProps: PropTypes.object.isRequired,
 };
 
-export default appWithTranslation(MyApp);
+export default MyApp;

@@ -17,7 +17,7 @@ export async function getServerSideProps({ locale, query }) {
     const productsRef = collection(db, "products");
     const actualQuery = await firebaseQuery(
       productsRef,
-      where("product_type", "==", q)
+      where("product_type", "==", q?.toLowerCase())
     );
 
     querySnapshot = await getDocs(actualQuery);
@@ -39,10 +39,10 @@ export async function getServerSideProps({ locale, query }) {
   };
 }
 
-function Products({ products }) {
+function Products({ products, loading }) {
   console.log("loaded?");
   return (
-    <PageWrapper>
+    <PageWrapper loading={loading}>
       <ProductsGrid products={products} />
     </PageWrapper>
   );
