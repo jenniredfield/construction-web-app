@@ -7,6 +7,7 @@ import {
   CardMedia,
   Typography,
 } from "@mui/material";
+import { useRouter } from "next/router";
 
 const ProductCard = ({
   imgSrc,
@@ -15,11 +16,12 @@ const ProductCard = ({
   price,
   shop,
   dimensions,
+  id,
 }) => {
   const img = Array.isArray(imgSrc) ? imgSrc[0] : imgSrc;
-
+  const router = useRouter();
   return (
-    <Card>
+    <Card onClick={() => router.push(`/product/${id}`)}>
       <CardMedia component="img" height="140" image={img} alt="green iguana" />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">

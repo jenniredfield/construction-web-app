@@ -28,7 +28,11 @@ export async function getServerSideProps({ locale, query }) {
   const products = [];
 
   querySnapshot?.forEach((doc) => {
-    products.push({ id: doc.id, ...doc.data() });
+    console.log(
+      "🚀 ~ file: products.js ~ line 31 ~ querySnapshot?.forEach ~ doc",
+      doc
+    );
+    products.push({ ...doc.data(), id: doc.id });
   });
   //call own API
   return {
