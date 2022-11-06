@@ -3,14 +3,17 @@ import { Box, Button, Input, Typography, useMediaQuery } from "@mui/material";
 import ManageAccountsIcon from "@mui/icons-material/ManageAccounts";
 import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
 import Search from "../Search/Search";
+import Notification from "../Notification/Notification";
 
 import { NavBarContainer, NavBarWrapper, LinkStyled } from "./NavBar.styles";
 
 import { useAuth } from "../../../context/AuthProvider";
+import { useShopContext } from "../../../context/ShopProvider";
 
 const NavBar = () => {
   const isMobile = useMediaQuery((theme) => theme.breakpoints.down("md"));
   const { user, logOut } = useAuth();
+  const { openCart, toggleCart } = useShopContext();
   const hasUser = Object.keys(user || {}).length;
   return (
     <NavBarContainer>
@@ -44,10 +47,9 @@ const NavBar = () => {
               </Box>
             )}
             {!!hasUser && (
-              <Box mr={2}>
-                <LinkStyled href="/basket">
-                  <ShoppingBasketIcon />
-                </LinkStyled>
+              <Box mr={2} position="relative" onClick={toggleCart}>
+                <ShoppingBasketIcon />
+                <Notification />
               </Box>
             )}
             {!!hasUser && (

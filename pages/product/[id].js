@@ -4,16 +4,6 @@ import PageWrapper from "../../src/components/Layout/Wrappers/PageWrapper";
 import ProductComponent from "../../src/components/Product/Product";
 
 export async function getServerSideProps({ locale, query }) {
-  console.log(
-    "🚀 ~ file: [id].js ~ line 7 ~ getServerSideProps ~ query",
-    query
-  );
-
-  console.log(
-    "🚀 ~ file: product.js ~ line 6 ~ getServerSideProps ~ locale",
-    locale
-  );
-
   const { id } = query;
 
   const docRef = doc(db, "products", id);

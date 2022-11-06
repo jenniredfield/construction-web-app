@@ -10,7 +10,8 @@ import "../firebase.config";
 import theme from "../src/theme/theme";
 import createEmotionCache from "../src/theme/createEmotionCache";
 import { AuthProvider } from "../src/context/AuthProvider";
-import Spinner from "../src/components/Common/Spinner/Spinner";
+
+import ShopProvider from "../src/context/ShopProvider";
 
 // Client-side cache shared for the whole session
 // of the user in the browser.
@@ -46,14 +47,16 @@ function MyApp(props) {
         <meta name="viewport" content="initial-scale=1, width=device-width" />
       </Head>
       <AuthProvider>
-        <ThemeProvider theme={theme}>
-          {/* CssBaseline kickstart an elegant,
+        <ShopProvider>
+          <ThemeProvider theme={theme}>
+            {/* CssBaseline kickstart an elegant,
 				consistent, and simple baseline to
 				build upon. */}
 
-          <CssBaseline />
-          <Component {...pageProps} loading={loading} />
-        </ThemeProvider>
+            <CssBaseline />
+            <Component {...pageProps} loading={loading} />
+          </ThemeProvider>
+        </ShopProvider>
       </AuthProvider>
     </CacheProvider>
   );

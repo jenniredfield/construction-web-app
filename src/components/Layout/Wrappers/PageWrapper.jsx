@@ -1,4 +1,6 @@
 import { Box } from "@mui/material";
+import { useShopContext } from "../../../context/ShopProvider";
+import Cart from "../../Common/Cart/Cart";
 import Footer from "../../Common/Footer/Footer";
 import NavBar from "../../Common/NavBar/NavBar";
 import Spinner from "../../Common/Spinner/Spinner";
@@ -6,7 +8,7 @@ import { MaxWidthWrapper } from "./PageWrapper.styles";
 
 const PageWrapper = ({ children, loading }) => {
   return (
-    <Box>
+    <Box position="relative">
       <NavBar />
       {loading ? (
         <Box
@@ -22,6 +24,7 @@ const PageWrapper = ({ children, loading }) => {
         <MaxWidthWrapper py={2}>{children}</MaxWidthWrapper>
       )}
       <Footer />
+      {cartOpen && <Cart />}
     </Box>
   );
 };
