@@ -7,8 +7,8 @@ export const NavBarContainer = styled(Box)(({ theme }) => ({
 
 export const NavBarWrapper = styled(Box)(({ theme }) => ({
   height: "100%",
-  width: "80%",
-  maxWidth: "800px",
+  width: "100%",
+  maxWidth: "1200px",
   display: "flex",
   justifyContent: "space-between",
   margin: "0 auto",

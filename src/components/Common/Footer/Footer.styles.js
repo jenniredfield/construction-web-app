@@ -9,7 +9,7 @@ export const FooterContainer = styled(Box)(({ theme }) => ({
 export const FooterWrapper = styled(Box)(({ theme }) => ({
   height: "100%",
   width: "80%",
-  maxWidth: "800px",
+  maxWidth: "1200px",
   display: "flex",
   justifyContent: "space-between",
   alignItems: "center",
