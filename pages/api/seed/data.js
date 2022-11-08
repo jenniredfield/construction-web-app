@@ -8,7 +8,6 @@ const images_tijolo = [
 const images_azulejo = [
   "https://www.tiles-direct.com/images/ledbury-slate-grey-45cm-x-45cm-wall-floor-tile-p5264-16279_image.jpg",
   "https://thumbor-gc.tomandco.uk/unsafe/1154x1385/filters:upscale():fill(white)/https://www.toppstiles.co.uk/static/media/catalog/product/6/9/694118.jpg",
-  "https://totaltiles.co.uk/media/catalog/product/cache/5f94e43332ed4492bec0ec21d6532da6/v/o/vogue_grey_matt_rectified_porcelain_floor_tile_600x600mm.jpg",
 ];
 
 const product_tijolo = {
